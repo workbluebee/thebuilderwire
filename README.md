@@ -176,7 +176,7 @@ BUILDERWIRE_OPENAI_MODEL=gpt-4.1-mini
 BUILDERWIRE_DRY_RUN=false
 ```
 
-The workflow runs every 4 hours and can also be triggered manually from GitHub Actions.
+The workflow runs hourly during US Eastern daytime/evening hours and can also be triggered manually from GitHub Actions.
 
 Local Builder Wire commands:
 
@@ -186,4 +186,17 @@ npm run builderwire:post-due
 npm run builderwire:run
 ```
 
-Start with 3-5 posts/day. Do not run it every few minutes.
+The current GitHub schedule targets 16 posts/day:
+
+```text
+8 AM-11 PM US Eastern during daylight saving time
+```
+
+GitHub cron runs in UTC, so the schedule uses:
+
+```text
+17 12-23 * * *
+17 0-3 * * *
+```
+
+Revisit this when daylight saving time changes.
