@@ -89,6 +89,7 @@ async function postDue() {
 
   writeJson(files.queue, remaining.concat(failed));
   if (posted.length) appendJson(files.postLog, posted);
+  if (failed.length) process.exitCode = 1;
 }
 
 function safetyReport() {
