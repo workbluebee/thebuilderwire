@@ -1,0 +1,43 @@
+name: The Builder Wire
+
+on:
+  schedule:
+    - cron: "17 */4 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: builderwire-bot
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate and post
+        run: npm run builderwire:run
+        env:
+          OPENAI_API_KEY: ${{ secrets.BUILDERWIRE_OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.BUILDERWIRE_OPENAI_MODEL || 'gpt-4.1-mini' }}
+          X_API_KEY: ${{ secrets.BUILDERWIRE_X_API_KEY }}
+          X_API_SECRET: ${{ secrets.BUILDERWIRE_X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.BUILDERWIRE_X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.BUILDERWIRE_X_ACCESS_TOKEN_SECRET }}
+          X_USER_ACCESS_TOKEN: ${{ secrets.BUILDERWIRE_X_USER_ACCESS_TOKEN }}
+          X_REFRESH_TOKEN: ${{ secrets.BUILDERWIRE_X_REFRESH_TOKEN }}
+          X_CLIENT_ID: ${{ secrets.BUILDERWIRE_X_CLIENT_ID }}
+          X_CLIENT_SECRET: ${{ secrets.BUILDERWIRE_X_CLIENT_SECRET }}
+          DRY_RUN: ${{ vars.BUILDERWIRE_DRY_RUN || 'false' }}
+          BOT_BRAND: thebuilderwire
+          POSTS_PER_RUN: "1"
+          MIN_POST_INTERVAL_MINUTES: "240"
+          SOURCE_SUMMARIES_PER_RUN: "0"

@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+
+# Local secrets. Use GitHub Actions secrets in deployment.
+.env
+.env.*
+!.env.example
+
+# Local queues/logs. GitHub runs generate -> post in one job.
+data/
+data-builderwire/

@@ -1,0 +1,20 @@
+{
+  "name": "ceobeingceo-safe-x-bot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bot:run": "node src/index.js run",
+    "bot:generate": "node src/index.js generate",
+    "bot:post-due": "node src/index.js post-due",
+    "bot:safety-check": "node src/index.js safety-check",
+    "bot:init": "node src/index.js init",
+    "builderwire:run": "ENV_FILE=.env.builderwire DATA_DIR=data-builderwire node src/index.js run",
+    "builderwire:generate": "ENV_FILE=.env.builderwire DATA_DIR=data-builderwire node src/index.js generate",
+    "builderwire:post-due": "ENV_FILE=.env.builderwire DATA_DIR=data-builderwire node src/index.js post-due",
+    "builderwire:safety-check": "ENV_FILE=.env.builderwire DATA_DIR=data-builderwire node src/index.js safety-check"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
