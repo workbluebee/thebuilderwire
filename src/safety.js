@@ -65,6 +65,8 @@ export function safetyCheck(post) {
   if ((post.text || "").length > 275) reasons.push("too long for X post");
   if (/(^|\s)@\w+/.test(post.text || "")) reasons.push("mentions are disabled for auto-posts");
   if (/(^|\s)#\w+/.test(post.text || "")) reasons.push("hashtags are disabled for auto-posts");
+  if (/[—–]/.test(post.text || "")) reasons.push("dash punctuation is disabled for auto-posts");
+  if (/\s-\s/.test(post.text || "")) reasons.push("dash-separated clauses are disabled for auto-posts");
   if (/[\u{1F300}-\u{1FAFF}]/u.test(post.text || "")) reasons.push("emojis are disabled for auto-posts");
   if (/(dm me|send your|phone|email address)/i.test(post.text || "")) {
     reasons.push("asks for personal/private contact");
