@@ -15,6 +15,6 @@
     "builderwire:safety-check": "ENV_FILE=.env.builderwire DATA_DIR=data-builderwire node src/index.js safety-check"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   }
 }
